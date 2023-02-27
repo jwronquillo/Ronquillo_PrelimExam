@@ -1,0 +1,33 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: Installation for Ubuntu
+    apt:
+      name:
+        - python3
+        - python3-pip
+        - openjdk-11-jdk
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Installation for CentOS
+    dnf:
+      name:
+        - pytho3-pip
+        - python3
+        - java-11-openjdk-devel
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: default MOTD
+    copy:
+      content: "Ansible Managed node by ronquillo"
+      dest: /etc/motd
+
+  - name: Create user
+    user:
+      name: username
+      password: "{{ 'password' | password_hash('test123') }}"
+      state: present
