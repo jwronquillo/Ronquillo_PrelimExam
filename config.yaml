@@ -15,7 +15,7 @@
   - name: Installation for CentOS
     dnf:
       name:
-        - pytho3-pip
+        - python3-pip
         - python3
         - java-11-openjdk-devel
       state: latest
@@ -29,5 +29,5 @@
   - name: Create user
     user:
       name: username
-      password: "{{ 'password' | password_hash('test123') }}"
+      password: "{{ 'ronx2407' | password_hash('test123') }}"
       state: present
