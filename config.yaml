@@ -28,6 +28,5 @@
 
   - name: Create user
     user:
-      name: username
-      password: "{{ 'ronx2407' | password_hash('ronx2407') }}"
+      name: "{{ User }}"
       state: present
