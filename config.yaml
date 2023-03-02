@@ -1,8 +1,10 @@
 ---
 - hosts: all
   become: true
-  tasks:
+  vars:
+    user_name: user
 
+  tasks:
   - name: Installation for Ubuntu
     apt:
       name:
@@ -28,5 +30,8 @@
 
   - name: Create user
     user:
-      name: "{{ User }}"
+      name: "{{ user_name }}"
+      comment: "Ansible User"
       state: present
+      createhome: yes
+      shell: /bin/bash
